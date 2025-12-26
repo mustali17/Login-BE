@@ -1,8 +1,9 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../model/User");
+require("dotenv").config();
 
-const JWT_SECRET = "GIrWAiTzbb9C8gFwkuI2C3nd7PEqHDUkkpo1QYSlmk0";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const registerUser = async (username, email, password) => {
   const existingUser = await User.findOne({ where: { email } });
