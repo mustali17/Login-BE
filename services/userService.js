@@ -43,4 +43,18 @@ const deleteUser = async (id) => {
   return await User.destroy({ where: { id } });
 };
 
-module.exports = { registerUser, loginUser, getAllUsers, deleteUser };
+const updateUser = async (id, data) => {
+  const user = await User.findByPk(id);
+  if (!user) throw new Error("User not found");
+
+  await user.update(data);
+  return user;
+};
+
+module.exports = {
+  registerUser,
+  loginUser,
+  getAllUsers,
+  deleteUser,
+  updateUser,
+};
